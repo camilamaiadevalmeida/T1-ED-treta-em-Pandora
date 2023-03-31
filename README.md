@@ -29,6 +29,14 @@
   
 #Execução do código:
 - [ ]Makefile
-- [ ]Path
+- [X]Path
 - [ ]Leitura do arquiv no main.c
 
+# Anotações para mim mesma:
+
+1) Fazer as funções de uso comum das figuras
+2) Implementar um learq.geo
+3) Implementar um criaarq.svg
+4) Continuar texto e todas as questões intrínsecas com v_0_v e |_T_|
+5) Rever a implementação das EDs
+6) Ted??????
