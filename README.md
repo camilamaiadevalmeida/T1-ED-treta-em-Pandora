@@ -28,7 +28,7 @@
 - [ ] Criação do .svg
   
 #Execução do código:
-- [ ] Makefile
+- [X] Makefile
 - [X] Path
 - [ ] Leitura do arquiv no main.c
 
