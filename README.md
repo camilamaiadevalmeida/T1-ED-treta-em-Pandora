@@ -3,34 +3,34 @@
 # Organização do trabalho:
 
 #Estruturas das figuras:
-- [ ]Figuras +-kkkkk
-- [ ]Círculo
-- [ ]Retângulo
-- [ ]Linha
-- [ ]Texto
+- [ ] Figuras +-kkkkk
+- [ ] Círculo
+- [ ] Retângulo
+- [ ] Linha
+- [ ] Texto
      
 #Estruturas de dados:
-- [ ]Lista duplamente encadeada
-- [ ]Fila circular estática
+- [ ] Lista duplamente encadeada
+- [ ] Fila circular estática
      
 #Ataques:
-- [ ]Balões
-- [ ]Caças
-- [ ]Fotos
-- [ ]Bombas
-- [ ]Pontuação
-- [ ]Ataques do .qry
+- [ ] Balões
+- [ ] Caças
+- [ ] Fotos
+- [ ] Bombas
+- [ ] Pontuação
+- [ ] Ataques do .qry
       
 #Manipulação de arquivos:
-- [ ]Leitura do .qry
-- [ ]Leitura do .geo
-- [ ]Criação do .txt
-- [ ]Criação do .svg
+- [ ] Leitura do .qry
+- [ ] Leitura do .geo
+- [ ] Criação do .txt
+- [ ] Criação do .svg
   
 #Execução do código:
-- [ ]Makefile
-- [X]Path
-- [ ]Leitura do arquiv no main.c
+- [ ] Makefile
+- [X] Path
+- [ ] Leitura do arquiv no main.c
 
 # Anotações para mim mesma:
 
