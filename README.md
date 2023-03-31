@@ -13,7 +13,7 @@
 - [ ]Lista duplamente encadeada
 - [ ]Fila circular estática
      
-#Ataques:
+# Ataques:
 - [ ]Balões
 - [ ]Caças
 - [ ]Fotos
@@ -21,13 +21,13 @@
 - [ ]Pontuação
 - [ ]Ataques do .qry
       
-#Manipulação de arquivos:
+# Manipulação de arquivos:
 - [ ]Leitura do .qry
 - [ ]Leitura do .geo
 - [ ]Criação do .txt
 - [ ]Criação do .svg
   
-#Execução do código:
+# Execução do código:
 - [ ]Makefile
 - [ ]Path
 - [ ]Leitura do arquiv no main.c
