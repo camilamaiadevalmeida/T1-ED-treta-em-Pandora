@@ -3,7 +3,7 @@
 # Organização do trabalho:
 
 #Estruturas das figuras:
-- [ ]Figuras
+- [ ]Figuras +-kkkkk
 - [ ]Círculo
 - [ ]Retângulo
 - [ ]Linha
