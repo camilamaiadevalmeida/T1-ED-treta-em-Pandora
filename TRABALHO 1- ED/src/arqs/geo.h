@@ -1,9 +1,8 @@
+#define _GEO_H
 #include<stdio.h>
 #include<stdlib.h>
 #include"../ed/lista.h"
 #ifndef _GEO_H
-#define _GEO_H
-
 
 /* Este arquivo provê funções para a criação de arquivos .geo.
 Ou seja, arquivos de entrada que contém os comandos que especificam 

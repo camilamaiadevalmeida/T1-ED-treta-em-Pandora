@@ -6,11 +6,6 @@
 #include"../objetos/circulo.h"
 #include"../objetos/linha.h"
 #include"../objetos/texto.h"
-#include"../objetos/Retangulo.c"
-#include"../objetos/Circulo.c"
-#include"../objetos/Linha.c"
-#include"../objetos/Texto.c"
-
 
 #include<stdio.h>
 #include<stdlib.h>
