@@ -60,7 +60,7 @@ struct Figura figura, *ptr;
 
 
 // Função que cria uma nova figura com os parâmetros especificados
-Figura criaFigura(char tipo, int id, double x, double y, char corb, char corp){
+Figura criaFigura(char tipo, char id, double x, double y, double x2, double y2, int w, int h, double raio, char* corb, char* corp){
     //figura;
     figura.id = id;
     figura.tipo = tipo;
@@ -101,7 +101,7 @@ Figura criaFigura(char tipo, int id, double x, double y, char corb, char corp){
 
 
 // Função que seta as informações de uma figura
-void setFigura(Figura figura, char tipo, int id, double x, double y, char corb, char corp) {
+void setFigura(Figura figura, char tipo, int id, double x, double y, char* corb, char* corp) {
    struct Figura* ptr = figura;
    ptr-> tipo = tipo;
    ptr-> id = id;
@@ -136,7 +136,7 @@ int getId(Figura figura) {
 }
 
 // Função que seta a cor de borda de uma figura
-void setCorb(Figura figura, char corb) {
+void setCorb(Figura figura, char* corb) {
     //struct Figura* ptr = figura;
     ((struct Figura*) figura)-> corb = corb;
     
@@ -149,7 +149,7 @@ char getCorb(Figura figura) {
 }
 
 // Função que seta a cor de preenchimento de uma figura
-void setCorp(Figura figura, char corp) {
+void setCorp(Figura figura, char* corp) {
     //struct Figura* ptr = figura;
     ((struct Figura*) figura)-> corp = corp;
     

@@ -35,10 +35,10 @@ typedef void *Tipo;
 
 
 //Função que cria uma figura
-Figura criaFigura(char tipo, int id, double x, double y, char corb, char corp);
+Figura criaFigura(char tipo, char id, double x, double y, double x2, double y2, int w, int h, double raio, char* corb, char* corp);
 
 //Função que seta uma figura
-void setFigura(Figura figura, char tipo, int id, double x, double y, char corb, char corp);
+void setFigura(Figura figura, char tipo, int id, double x, double y, char* corb, char* corp);
 
 //Função que retorna o tipo de uma figura
 char getTipo(Figura figura);
@@ -52,13 +52,13 @@ void setId(Figura figura, int id);
 int getId(Figura figura);
 
 //Função que seta a cor de borda de uma figura
-void setCorb(Figura figura, char corb);
+void setCorb(Figura figura, char* corb);
 
 //Função que retorna a cor de borda de uma figura
 char getCorb(Figura figura);
 
 //Função que seta a cor de preenchimento de uma figura
-void setCorp(Figura figura, char corp);
+void setCorp(Figura figura, char* corp);
 
 //Função que retorna a cor de preenchimento de uma figura
 char getCorp(Figura figura);

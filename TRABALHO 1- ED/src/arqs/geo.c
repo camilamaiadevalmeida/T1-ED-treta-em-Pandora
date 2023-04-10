@@ -100,10 +100,10 @@ void lerGeo(FILE *geo, Lista *lista)
                 double x = strtod(figureDescription[2], ptr);
                 double y = strtod(figureDescription[3], ptr);
                 double raio = strtod(figureDescription[4], ptr);
-                double corb = strtod(figureDescription[5], ptr);
-                double corp = strtod(figureDescription[6], ptr);
+                char* corb = strtod(figureDescription[5], ptr);
+                char* corp = strtod(figureDescription[6], ptr);
 
-                Circulo c = criaFigura(atoi(figureDescription[1]), x, y, raio, corb, corp);
+                Circulo c = criaFigura(atoi(figureDescription[1]), NULL, 0, x, y, 0, NULL, NULL, 0, raio, corb, corp);
                 insertLst(lista, c);
             }
 
@@ -114,10 +114,10 @@ void lerGeo(FILE *geo, Lista *lista)
                 double y = strtod(figureDescription[3], ptr);
                 double w = strtod(figureDescription[4], ptr);
                 double h = strtod(figureDescription[5], ptr);
-                double corb = strtod(figureDescription[6], ptr);
-                double corp = strtod(figureDescription[7], ptr);
+                char* corb = strtod(figureDescription[6], ptr);
+                char* corp = strtod(figureDescription[7], ptr);
 
-                Retangulo r = criaFigura(atoi(figureDescription[1]), x, y, w, h, corb, corp);
+                Retangulo r = criaFigura(atoi(figureDescription[1]), NULL, 0, x, y, 0, 0, w, h, corb, corp);
                 insertLst(lista, r);
             }
 
@@ -128,9 +128,9 @@ void lerGeo(FILE *geo, Lista *lista)
                 double y1 = strtod(figureDescription[3], ptr);
                 double x2 = strtod(figureDescription[4], ptr);
                 double y2 = strtod(figureDescription[5], ptr);
-                double corb = strtod(figureDescription[6], ptr);
+                char* corb = strtod(figureDescription[6], ptr);
 
-                Linha l = criaFigura(atoi(figureDescription[1]), x1, x2, y1, y2, corb);
+                Linha l = criaFigura(atoi(figureDescription[1]), NULL, 0, 0, 0, x2, y2, 0, 0, 0, corb);
                 insertLst(lista, l);
             }
 
@@ -139,11 +139,11 @@ void lerGeo(FILE *geo, Lista *lista)
             {
                 double x = strtod(figureDescription[2], ptr);
                 double y = strtod(figureDescription[3], ptr);
-                double corb = strtod(figureDescription[4], ptr);
-                double corp = strtod(figureDescription[5], ptr);
+                char* corb = strtod(figureDescription[4], ptr);
+                char* corp = strtod(figureDescription[5], ptr);
                 char *texto = figureDescription[6];
 
-                Texto t = criaFigura(atoi(figureDescription[1]), x, y, corb, corp, *texto);
+                Texto t = criaFigura(atoi(figureDescription[1]), NULL, 0, x, y, 0, 0, 0, 0, corb, corp);
                 insertLst(lista, t);
             }
         else
