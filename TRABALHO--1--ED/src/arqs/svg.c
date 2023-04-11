@@ -1,81 +1,91 @@
-#include"main.h"
+#include "main.h"
 #include "svg.h"
 #include "../objetos/formas.h"
 #include "../ed/lista.h"
 
-
-
-
-
-//FILE* cria_path_SVG_geo (void* parametros){}
-
-/*void desenhaitemSVG (Lista* lst, FILE* file){
-    if(lst == NULL)
-        return;
-    //elem* elem = *lst;
-    Item* item = *lst;
-    
-    //na real nao sei se faz sentido lst aqui no while...porque eu quero entrar em cada no ne
-
-    //função que escreve no svg so o atual ne
-    //botando aquele formato de fold
-    */
-
-void desenhaItemFoldSVG (Lista lst, ApplyClosure f, Clausura c)
-{
-    Iterador it = createIterador(lst, false);
-
-    while (!isIteratorEmpty(it))
-    {
-        Item info = getIteratorNext(it);
-        f(info, c);
-        switch (tipo)
-        {
-        case 'r':
-            fprintf(file,"<rect width=\"%s\" height=\"%s\" x=\"%s\" y=\"%s\" stroke=\"%s\" stroke-width=\"1.0\" fill=\"%s\" fill-opacity = \"0.8\" stroke-opacity = \"0.8\"/>\n", elem->retan.w,elem->retan.h,elem->retan.x,elem->retan.y,elem->retan.corb,elem->retan.corp);
-            break;
-
-        case 'c':
-            fprintf(file,"<circle cx=\"%s\" cy=\"%s\" r=\"%s\" stroke=\"%s\" stroke-width=\"1.0\" fill=\"%s\" fill-opacity =  \"0.8\" stroke-opacity = \"0.8\"/>\n",elem->circulo.x,elem->circulo.y,elem->circulo.r,elem->circulo.corb,elem->circulo.corp);
-            break;
-
-        case 'l':
-            fprintf(file,"<line x1=\"%s\" y1=\"%s\" x2=\"%s\" y2=\"%s\" stroke=\"%s\" stroke-width=\"1.0\" fill-opacity = \"0.8\" stroke-opacity = \"0.8\"/>\n",elem->linha.x1,elem->linha.y1,elem->linha.x2,elem->linha.y2,elem->linha.cor);
-            break;
-
-        case 't':
-            fprintf(file,"<text x=\"%s\" y=\"%s\" fill=\"%s\" stroke=\"%s\" stroke-width=\"1.0\" fill-opacity = \"0.8\" stroke-opacity = \"0.8\" transform=\"rotate(%s)\">%s</text>\n",elem->texto.x,elem->texto.y,elem->texto.corp,elem->texto.corb,elem->texto.rota,elem->texto.texto);
-            break;
-        }
-    }
-    killIterator(it);
+void svg_init(FILE *svg){
+    fprintf(svg, "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n");
+    fprintf(svg, "<svg xmlns=\"http://www.w3.org/2000/svg\">\n");
 }
 
-/*
+void svg_finalize(FILE *svg){
+    fprintf(svg, "</svg>\n");
+}
 
-    while(lst != NULL){
-        if(strcmp(formato->tipo_forma,"r")==0){
-        
-            fprintf(file,"<rect width=\"%s\" height=\"%s\" x=\"%s\" y=\"%s\" stroke=\"%s\" stroke-width=\"1.0\" fill=\"%s\" fill-opacity = \"0.8\" stroke-opacity = \"0.8\"/>\n", elem->retan.w,elem->retan.h,elem->retan.x,elem->retan.y,elem->retan.corb,elem->retan.corp);
+void svg_close (FILE* file){
+    fclose(file);
+}
 
-        }else if (strcmp(elem->tipo_forma,"c")==0){
-
-            fprintf(file,"<circle cx=\"%s\" cy=\"%s\" r=\"%s\" stroke=\"%s\" stroke-width=\"1.0\" fill=\"%s\" fill-opacity =  \"0.8\" stroke-opacity = \"0.8\"/>\n",elem->circulo.x,elem->circulo.y,elem->circulo.r,elem->circulo.corb,elem->circulo.corp);
-        
-        }else if (strcmp(elem->tipo_forma,"t")==0){
-
-            fprintf (file,"<text x=\"%s\" y=\"%s\" stroke=\"%s\" stroke-width=\"0.3\" fill=\"%s\" > %s </text> ->\n",elem->texto.x,elem->texto.y,elem->texto.corb,elem->texto.corp,elem->texto.txto);
-        }else if (strcmp(elem->tipo_forma,"l")==0){
-
-        fprintf ( file,"<line x1=\"%s\" y1=\"%s\" x2=\"%s\" y2=\"%s\" stroke=\"%s\" stroke-width=\"1.0\"/>\n",elem->linha.x1,elem->linha.y1,elem->linha.x2,elem->linha.y2,elem->linha.cor);
-
-        }
-
-        elem = elem->prox;
-    }
-
-    fprintf(file,"</svg>");
+struct clausuraSvg
+{
+    FILE *svg; // arquivo svg
 };
 
-*/
+ClausuraSvg criaClausuraSvg(FILE *svg)
+{
+    struct clausuraSvg *c = malloc(sizeof(struct clausuraSvg));
+    c->svg = svg;
+    return c;
+}
 
+void escreveSvg(Item item, Clausura c)
+{
+    enum TipoForma tipo = get_tipo(item);
+    FILE* file = fopen(file, "w");
+    fprintf(file, "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n");
+    fprintf(file, "<svg xmlns=\"http://www.w3.org/2000/svg\">\n");
+    switch (get_tipo(((struct clausuraSvg *)c)->svg))
+    {
+    case CIRCULO:
+        (((struct clausuraSvg *)c)->svg,
+                fprintf(file, "<circle cx=\"%s\" cy=\"%s\" r=\"%s\" fill=\"%s\" />\n", 
+                get_x(item), get_y(item), get_r(item), get_corp(item)));
+        break;
+    case RETANGULO:
+        (((struct clausuraSvg *)c)->svg,
+                 fprintf(file, "<rect x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" fill=\"%s\" />\n", 
+                get_x(item), get_y(item), get_w(item), get_h(item), get_corp(item)));
+        break;
+    case TEXTO:
+        (((struct clausuraSvg *)c)->svg,
+                fprintf(file, "<text x=\"%s\" y=\"%s\" fill=\"%s\" />\n", 
+                get_x(item), get_y(item), get_corp(item)));
+        break;
+    case LINHA:
+        (((struct clausuraSvg *)c)->svg,
+                fprintf(file, "<line x1=\"%s\" y1=\"%s\" x2=\"%s\" y2=\"%s\" stroke=\"%s\" />\n", 
+                get_x(item), get_y(item), get_w(item), get_h(item), get_corp(item)));
+        break;
+    }
+    fprintf(file, "</svg>\n");
+    fclose(file);
+}
+
+//ler filnm como closure e la dentro tirar roupa dele pra
+
+/*void desenhaItemSVG(Item item, void* closure, const char* filename) {
+    FILE* file = fopen(filename, "w");
+    fprintf(file, "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n");
+    fprintf(file, "<svg xmlns=\"http://www.w3.org/2000/svg\">\n");
+    switch (get_tipo(item)) {
+        case RETANGULO:
+            fprintf(file, "<rect x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" fill=\"%s\" />\n", 
+                get_x(item), get_y(item), get_w(item), get_h(item), get_corp(item));
+            break;
+        case CIRCULO:
+            fprintf(file, "<circle cx=\"%s\" cy=\"%s\" r=\"%s\" fill=\"%s\" />\n", 
+                get_x(item), get_y(item), get_r(item), get_corp(item));
+            break;
+        case TEXTO:
+            fprintf(file, "<text x=\"%s\" y=\"%s\" fill=\"%s\" />\n", 
+                get_x(item), get_y(item), get_corp(item));
+            break;
+        case LINHA:
+            fprintf(file, "<line x1=\"%s\" y1=\"%s\" x2=\"%s\" y2=\"%s\" stroke=\"%s\" />\n", 
+                get_x(item), get_y(item), get_w(item), get_h(item), get_corp(item));
+            break;
+    }
+    fprintf(file, "</svg>\n");
+    fclose(file);
+}
+*/

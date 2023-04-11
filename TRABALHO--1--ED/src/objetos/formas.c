@@ -172,7 +172,7 @@ char *get_id(void *formato)
     return f->id;
 }
 
-char *get_tipo(void *formato)
+char get_tipo(void *formato)
 {
     Forma *f = (Forma *)formato;
     return f->tipo;
