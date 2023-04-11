@@ -14,6 +14,6 @@ instruções para desenhar formas geométricas, como retângulos, círculos, lin
 */
 
 FILE* cria_path_SVG_geo (void* parametros);
-void desenhaNoSVG (Lista* li, FILE* file);
-
+//void desenhaNoSVG (Lista* li, FILE* file);
+void desenhaItemFoldSVG (Lista lst, ApplyClosure f, Clausura c);
 #endif
