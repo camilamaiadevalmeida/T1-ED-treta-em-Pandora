@@ -46,6 +46,21 @@ void set_x2(void *formato, char x2[]);
 // função que seta o y2 para linha
 void set_y2(void *formato, char y2[]);
 
+// função que seta o texto para texto
+void set_txto(void *formato, char txto[]);
+
+// função que seta a familia para texto
+void set_familia(void *formato, char familia[]);
+
+// função que seta o tamanho para texto
+void set_tamanho(void *formato, char tamanho[]);
+
+// função que seta o peso para texto
+void set_peso(void *formato, char peso[]);
+
+// função que seta a ancora para texto
+void set_ancora(void *formato, char ancora[]);
+
 
 // Funções de get:
 
@@ -85,5 +100,19 @@ char *get_x2(void *formato);
 // função que retorna o y2 para linha
 char *get_y2(void *formato);
 
+// função que retorna o texto para texto
+char *get_txto(void *formato);
+
+// função que retorna a familia para texto
+char *get_familia(void *formato);
+
+// função que retorna o tamanho para texto
+char *get_tamanho(void *formato);
+
+// função que retorna o peso para texto
+char *get_peso(void *formato);
+
+// função que retorna a ancora para texto
+char *get_ancora(void *formato);
 
 #endif
