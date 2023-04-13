@@ -3,7 +3,7 @@
 
 #include "headers.h"
 
-//Este módulo provê ferramentas para utilizar na função map (lista)
+// Este módulo provê ferramentas para utilizar na função map (lista)
 
 Item copyItem(Item item, Clausura c);
 

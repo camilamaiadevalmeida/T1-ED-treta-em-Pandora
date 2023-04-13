@@ -37,4 +37,3 @@ void lerLinha(FILE *arq, char *palavras[], int *n)
 		*n = 0;
 	}
 }
-

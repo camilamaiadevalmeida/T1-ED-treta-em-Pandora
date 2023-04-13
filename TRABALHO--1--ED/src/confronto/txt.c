@@ -1,8 +1,9 @@
 #include "txt.h"
 
-//seguir mesma estrutura dql??????m
-void reportarFigura(void *forma, FILE *txt){
-    //pra todos os tipos de figura + balao + caca + 
+// seguir mesma estrutura dql??????m
+void reportarFigura(void *forma, FILE *txt)
+{
+    // pra todos os tipos de figura + balao + caca +
 }
 
 void printListaInt(Lista lista, FILE *txt)

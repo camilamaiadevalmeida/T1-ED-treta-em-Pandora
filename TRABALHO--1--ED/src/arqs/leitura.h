@@ -12,13 +12,13 @@
  + infos de arquivos !!!
 */
 
-//Função que lê uma linha de um arquivo e separa as informações da linha em tokens
+// Função que lê uma linha de um arquivo e separa as informações da linha em tokens
 void lerLinha(FILE *arq, char *palavras[], int *n);
 
-// Função que lê o arquivo geo e armazena os elementos na lista 
+// Função que lê o arquivo geo e armazena os elementos na lista
 void lerGeo(FILE *geo, Lista *lista);
 
 // Função que lê o arquivo QRY e chama as funções de remoção e alteração de elementos na lista
-void lerQry(FILE *qry, FILE *svg, FILE *txt, Lista *lista, char* nomeSvg);
+void lerQry(FILE *qry, FILE *svg, FILE *txt, Lista *lista, char *nomeSvg);
 
 #endif

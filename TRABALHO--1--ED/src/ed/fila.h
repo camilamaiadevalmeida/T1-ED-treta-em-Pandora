@@ -11,7 +11,7 @@ remover elementos de uma lista de forma eficiente. A inserção e
 remoção são feitas no mesmo extremo da lista, o que permite que
 elementos sejam inseridos e removidos em tempo constante. A
 estrutura de dados é circular, o que significa que o último elemento
-aponta para o primeiro, e o primeiro aponta para o último. 
+aponta para o primeiro, e o primeiro aponta para o último.
 A estrutura de dados é estática, o que significa que o tamanho da
 lista é definido no momento da criação da lista.
 
@@ -39,28 +39,5 @@ int setQtdFila(Fila fila);
 bool isVaziaFila(Fila fila);
 bool isCheiaFila(Fila fila);
 void killFila(Fila fila);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #endif

@@ -7,25 +7,8 @@
 de forma que as funções são responsáveis por analisar se uma figura cruza a outra no SVG
 */
 
-/*Pensar em um jeito de fazer como o Jean fez, só que considerando que você nõ tem funções 
+/*Pensar em um jeito de fazer como o Jean fez, só que considerando que você nõ tem funções
 especificas para cada fórmula então vai ficar bemmmmmmmmmm diferente!
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #endif

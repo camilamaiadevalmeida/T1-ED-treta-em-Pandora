@@ -3,7 +3,13 @@
 
 #include "../arqs/main.h"
 
-enum TipoForma {CIRCULO, RETANGULO, TEXTO, LINHA};
+enum TipoForma
+{
+    CIRCULO,
+    RETANGULO,
+    TEXTO,
+    LINHA
+};
 
 void *cria_retangulo(char i[], char tipo[], char w[], char h[], char x[], char y[], char corb[], char corp[]);
 void *cria_circulo(char i[], char tipo[], char r[], char x[], char y[], char corb[], char corp[]);
@@ -12,8 +18,7 @@ void *cria_texto(char i[], char tipo[], char x[], char y[], char corb[], char co
 
 // tipo:
 
-//Eu tinha que mudar, né?
-
+// Eu tinha que mudar, né?
 
 char get_tipo();
 
@@ -69,12 +74,10 @@ void set_peso(void *formato, char peso[]);
 // função que seta a ancora para texto
 void set_ancora(void *formato, char ancora[]);
 
-
 // Funções de get:
 
 // função que retorna o id da forma
 char *get_id(void *formato);
-
 
 // função que retorna o x para qualquer tipo de formato
 char *get_x(void *formato);

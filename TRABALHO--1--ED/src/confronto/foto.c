@@ -2,7 +2,7 @@
 #include "headers.h"
 #include "../arqs/main.h"
 
-//Implementação de fotos
+// Implementação de fotos
 
 struct foto
 {
@@ -18,7 +18,7 @@ struct clausuraFotoTxt
     int i;
 };
 
-//reporta, tira foto e imprime tem que ver com calma pq depende um teco da forma como eu fiz as formas
+// reporta, tira foto e imprime tem que ver com calma pq depende um teco da forma como eu fiz as formas
 
 Lista getFotoElem(Foto f)
 {
@@ -49,4 +49,3 @@ void killFoto(Foto f)
     struct foto *fotoDereferenciada = (struct foto *)f;
     free(fotoDereferenciada);
 }
-

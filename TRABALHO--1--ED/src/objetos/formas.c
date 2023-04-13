@@ -34,7 +34,6 @@ typedef struct texto
     char rota[20];
 } Text;
 
-
 struct balao
 {
     double r;
@@ -48,7 +47,6 @@ struct caca
     int disparos;
     Lista *alvosAcertados;
 };
-
 
 typedef struct formato
 {
@@ -138,7 +136,7 @@ void *cria_texto(char i[], char tipo[], char x[], char y[], char corb[], char co
     set_ancora(texto, ancora);
     set_rota(texto, "0");
 
-     strncpy(t->texto, txto, 50);
+    strncpy(t->texto, txto, 50);
     if (strlen(txto) > 50)
     {
         t->txto[49] = '\0';
@@ -389,40 +387,36 @@ void set_ancora(void *formato, char ancora[])
 void killForma(void *formato)
 {
     Forma *f = (Forma *)formato;
-    switch(){
-        case 'r':
-            free(f->retangulo);
-            break;
-        case 'c':
-            free(f->circulo);
-            break;
-        case 'l':
-            free(f->linha);
-            break;
-        case 't':
-            struct texto *texto = (struct texto *)t;
-            free(f->texto);
-            if (texto->tipoVeiculo == BALAO)
+    switch ()
+    {
+    case 'r':
+        free(f->retangulo);
+        break;
+    case 'c':
+        free(f->circulo);
+        break;
+    case 'l':
+        free(f->linha);
+        break;
+    case 't':
+        struct texto *texto = (struct texto *)t;
+        free(f->texto);
+        if (texto->tipoVeiculo == BALAO)
+        {
+            for (int i = 0; i < 9; i++)
             {
-                for (int i = 0; i < 9; i++)
-                {
-                    destroiFila(texto->balaoDados->filaFotos[i]);
-                }
-                free(texto->balaoDados);
+                destroiFila(texto->balaoDados->filaFotos[i]);
             }
-             else if (texto->tipoVeiculo == CACA)
-            {
-                killLst(texto->cacaDados-> alvosAcertados);
-                free(texto->cacaDados);
-            }
-            break;
+            free(texto->balaoDados);
+        }
+        else if (texto->tipoVeiculo == CACA)
+        {
+            killLst(texto->cacaDados->alvosAcertados);
+            free(texto->cacaDados);
+        }
+        break;
     }
 }
-
-
-
-
-
 
 // faz sentido eu precisar receber o tipo antes
 
