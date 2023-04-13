@@ -137,6 +137,7 @@ void *cria_texto(char i[], char tipo[], char x[], char y[], char corb[], char co
     set_rota(texto, "0");
 
     strncpy(t->texto, txto, 50); // COMENTÁRIO DO JEAN: você já fez isso ali em cima
+    //COMENTÁRIO DO JEAN: todos esses t ai de baixo tem que ser texto ao invés de t
     if (strlen(txto) > 50)
     {
         t->txto[49] = '\0';
@@ -387,6 +388,7 @@ void set_ancora(void *formato, char ancora[])
 void killForma(void *formato)
 {
     Forma *f = (Forma *)formato;
+    // COMENTÁRIO DO JEAN: poe o tipo dentro do switch
     switch ()
     {
     case 'r':
