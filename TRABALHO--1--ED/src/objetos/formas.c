@@ -22,7 +22,7 @@ typedef struct linha
 
 typedef struct texto
 {
-    enum TipoForma tipo;
+    enum TipoForma tipo; // COMENTARIO DO JEAN: isso aqui não precisa existir
     enum TipoVeiculo tipoVeiculo;
     struct balao *balaoDados;
     struct caca *cacaDados;
@@ -129,14 +129,14 @@ void *cria_texto(char i[], char tipo[], char x[], char y[], char corb[], char co
     set_y(texto, y);
     set_corb(texto, corb);
     set_corp(texto, corp);
-    set_txto(texto, txto);
+    set_txto(texto, txto); // <--------------------------aqui
     set_familia(texto, familia);
     set_tamanho(texto, tamanho);
     set_peso(texto, peso);
     set_ancora(texto, ancora);
     set_rota(texto, "0");
 
-    strncpy(t->texto, txto, 50);
+    strncpy(t->texto, txto, 50); // COMENTÁRIO DO JEAN: você já fez isso ali em cima
     if (strlen(txto) > 50)
     {
         t->txto[49] = '\0';

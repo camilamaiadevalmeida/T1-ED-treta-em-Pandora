@@ -31,6 +31,7 @@ ClausuraSvg criaClausuraSvg(FILE *svg)
     return c;
 }
 
+// COMENTÁRIO DO JEAN: tem que por o negocio de girar
 void escreveSvg(Item item, Clausura c)
 {
     enum TipoForma tipo = get_tipo(item);

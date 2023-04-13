@@ -3,6 +3,9 @@
 
 #include <string.h>
 
+// COMENTÁRIO DO JEAN: por favorrrrrrrrr nao copia isso
+// outro episódio na saga "gambiarras extremamente especificas que ele VAI PERCEBER que ta igual"
+
 /** Uma estrutura para representar o caminho de um arquivo. */
 typedef void *Path;
 

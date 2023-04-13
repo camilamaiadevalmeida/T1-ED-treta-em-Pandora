@@ -2,6 +2,7 @@
 #include "../objetos/formas.h"
 #include "../arqs/main.h"
 
+// COMENTÁRIO DO JEAN: essas variáveis não precisam ser globais, só enfia elas na função
 char x[20];
 char y[20];
 char corb[20];
@@ -40,7 +41,8 @@ void dealWithGeo(FILE *geo, Lista *listas[])
 
         if (strcmp(tipo_forma, "r") == 0)
         {
-
+            // apagar isso aqui
+            //---------------------------------------------
             fscanf(geo, "%s", i);
             fscanf(geo, "%s", w);
             fscanf(geo, "%s", h);
@@ -49,9 +51,25 @@ void dealWithGeo(FILE *geo, Lista *listas[])
             fscanf(geo, "%s", corb);
             fscanf(geo, "%s", corp);
             fscanf(geo, "%s", rota);
+            //---------------------------------------------
+            // COMENTARIO DO JEAN: isso aí não funciona pq o fscanf lê uma linha
+            // inteira. tu precisa fazer ou um sscanf do tipo_forma do jeito que
+            // vai ler a forma ou um strtok pra separar cada palavra da linha
 
+            // 1 - sscanf(tipo_forma, "%s %s %s %s %s %s %s", i, x, y, w, h, corb, corp);
+
+            // 2 - ponteiroPalavra = strtok(tipo_forma, " ");
+            //     *fazer coisas com a primeira palavra*
+            //     ponteiroPalavra = strtok(NULL, " ");
+            //     *fazer coisas com a segunda palavra*
+            //     ponteiroPalavra = strtok(NULL, " ");
+            //     etc
+
+            // COMENTARIO DO JEAN: passa o mouse por cima do nome da função pra ver
+            // o que precisa por e em que ordem. NAO CONFIE NO COPILOT
             retan = cria_retangulo(i, w, h, x, y, corb, corp, rota);
 
+            // COMENTARIO DO JEAN: que listas mano como assim
             for (int aux = 0; aux < 10; aux++)
             { // inserindo em todas as listas
                 insere_lista_final("r", listas[aux], retan);
@@ -83,7 +101,7 @@ void dealWithGeo(FILE *geo, Lista *listas[])
             fscanf(geo, "%s", y);
             fscanf(geo, "%s", corb);
             fscanf(geo, "%s", corp);
-            fscanf(geo, "%[^\n]s", txto);
+            fscanf(geo, "%[^\n]s", txto); // COMENTARIO DO JEAN: que
             fscanf(geo, "%s", rota);
 
             txt = cria_texto(i, x, y, corb, corp, txto, rota);

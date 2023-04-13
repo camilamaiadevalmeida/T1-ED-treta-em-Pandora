@@ -20,6 +20,9 @@ void *cria_texto(char i[], char tipo[], char x[], char y[], char corb[], char co
 
 // Eu tinha que mudar, né?
 
+// COMENTÁRIO DO JEAN: não. o problema não tá na lógica que você fez as coisas, tá no jeito que tá escrito só.
+// se tu quer que todos os campos sejam string continua assim, não fica mudando as coisas só pra ficar igual ao meu código.
+
 char get_tipo();
 
 void set_tipo();

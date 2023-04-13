@@ -14,6 +14,11 @@ para as funções mais complicadas de manipulação dos confrontos entre as bomb
 e as fotos.
 */
 
+// COMENTÁRIO DO JEAN: é melhor colocar tudo isso junto no formas.c e formas.h.
+// já que é tudo uma structzona só com campos específicos pra cada tipo de forma
+// fica mais fácil fazer essas coisas no quartinho que dá pra acessar a structzona.
+// daí tu cria um campo pra caça e um pra balão também na structzona
+
 // Penso em meter uma Closure pra pegar info de formas e implementar num texto.c ou só implementar no formas.c mesmo
 
 /** Define os parâmetros de foco de um balão*/
