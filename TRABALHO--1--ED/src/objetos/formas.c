@@ -1,4 +1,6 @@
 #include "formas.h"
+#include "texto.h"
+#include "tipos.h"
 #include "../arqs/main.h"
 
 typedef struct retangulo
@@ -20,6 +22,10 @@ typedef struct linha
 
 typedef struct texto
 {
+    enum TipoForma tipo;
+    enum TipoVeiculo tipoVeiculo;
+    struct balao *balaoDados;
+    struct caca *cacaDados;
     char txto[400];
     char ancora[20];
     char familia[20];
@@ -27,6 +33,22 @@ typedef struct texto
     char peso[20];
     char rota[20];
 } Text;
+
+
+struct balao
+{
+    double r;
+    double p;
+    double h;
+    Fila *filaFotos[9];
+};
+
+struct caca
+{
+    int disparos;
+    Lista *alvosAcertados;
+};
+
 
 typedef struct formato
 {
@@ -114,8 +136,40 @@ void *cria_texto(char i[], char tipo[], char x[], char y[], char corb[], char co
     set_tamanho(texto, tamanho);
     set_peso(texto, peso);
     set_ancora(texto, ancora);
-
     set_rota(texto, "0");
+
+     strncpy(t->texto, txto, 50);
+    if (strlen(txto) > 50)
+    {
+        t->txto[49] = '\0';
+    }
+    if (strncmp(txto, "v_O_v", 5) == 0)
+    {
+        t->tipoVeiculo = BALAO;
+        t->balaoDados = (struct balao *)malloc(sizeof(struct balao));
+        t->balaoDados->r = 0;
+        t->balaoDados->p = 0;
+        t->balaoDados->h = 0;
+        for (int i = 0; i < 10; i++)
+        {
+            t->balaoDados->filaFotos[i] = criaFila(15);
+        }
+    }
+    else if (strncmp(txto, "|-T-|", 5) == 0)
+    {
+        t->tipoVeiculo = CACA;
+        t->cacaDados = (struct caca *)malloc(sizeof(struct caca));
+        t->cacaDados->disparosEfetuados = 0;
+        t->cacaDados->idsAcertados = createLst(-1);
+    }
+    else
+    {
+        t->tipoVeiculo = NENHUM;
+    }
+    t->rotacao = 0;
+    t->textoFamilia = familia;
+    t->textoPeso = peso;
+    t->textoTamanho = tamanho;
 
     return texto;
 }
@@ -331,6 +385,43 @@ void set_ancora(void *formato, char ancora[])
     Forma *f = (Forma *)formato;
     strcpy(f->texto.ancora, ancora);
 }
+
+void killForma(void *formato)
+{
+    Forma *f = (Forma *)formato;
+    switch(){
+        case 'r':
+            free(f->retangulo);
+            break;
+        case 'c':
+            free(f->circulo);
+            break;
+        case 'l':
+            free(f->linha);
+            break;
+        case 't':
+            struct texto *texto = (struct texto *)t;
+            free(f->texto);
+            if (texto->tipoVeiculo == BALAO)
+            {
+                for (int i = 0; i < 9; i++)
+                {
+                    destroiFila(texto->balaoDados->filaFotos[i]);
+                }
+                free(texto->balaoDados);
+            }
+             else if (texto->tipoVeiculo == CACA)
+            {
+                killLst(texto->cacaDados-> alvosAcertados);
+                free(texto->cacaDados);
+            }
+            break;
+    }
+}
+
+
+
+
 
 
 // faz sentido eu precisar receber o tipo antes

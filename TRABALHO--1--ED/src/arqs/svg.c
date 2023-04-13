@@ -38,23 +38,19 @@ void escreveSvg(Item item, Clausura c)
     {
     case CIRCULO:
         (((struct clausuraSvg *)c)->svg,
-                fprintf(file, "<circle cx=\"%s\" cy=\"%s\" r=\"%s\" fill=\"%s\" />\n", 
-                get_x(item), get_y(item), get_r(item), get_corp(item)));
+                fprintf(file, "<circle cx=\"%s\" cy=\"%s\" r=\"%s\" fill=\"%s\" />\n", get_x(item), get_y(item), get_r(item), get_corp(item)));
         break;
     case RETANGULO:
         (((struct clausuraSvg *)c)->svg,
-                 fprintf(file, "<rect x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" fill=\"%s\" />\n", 
-                get_x(item), get_y(item), get_w(item), get_h(item), get_corp(item)));
+                 fprintf(file, "<rect x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" fill=\"%s\" />\n", get_x(item), get_y(item), get_w(item), get_h(item), get_corp(item)));
         break;
     case TEXTO:
         (((struct clausuraSvg *)c)->svg,
-                fprintf(file, "<text x=\"%s\" y=\"%s\" fill=\"%s\" />\n", 
-                get_x(item), get_y(item), get_corp(item)));
+                fprintf(file, "<text x=\"%s\" y=\"%s\" fill=\"%s\" />\n", get_x(item), get_y(item), get_corp(item)));
         break;
     case LINHA:
         (((struct clausuraSvg *)c)->svg,
-                fprintf(file, "<line x1=\"%s\" y1=\"%s\" x2=\"%s\" y2=\"%s\" stroke=\"%s\" />\n", 
-                get_x(item), get_y(item), get_w(item), get_h(item), get_corp(item)));
+                fprintf(file, "<line x1=\"%s\" y1=\"%s\" x2=\"%s\" y2=\"%s\" stroke=\"%s\" />\n", get_x(item), get_y(item), get_w(item), get_h(item), get_corp(item)));
         break;
     }
     fprintf(file, "</svg>\n");

@@ -1,6 +1,8 @@
 #ifndef _FILA_H
 #define _FILA_H
 
+#include "../arqs/main.h"
+#include "lista.h"
 /*
 Este módulo provê funções para manipular filas circulares estáticas.
 
@@ -19,6 +21,24 @@ filas de fotos para cada balão e que cada uma dessas filas pode ter até
 15 elementos(fotos).
 */
 
+typedef void *Fila;
+Fila criaFila(int size);
+bool insereFila(Fila fila, Item elemento);
+bool removeElemFila(Fila fila);
+
+Item getInicioFila(Fila fila);
+Item getFimFila(Fila fila);
+int getMaxSizeFila(Fila fila);
+int getQtdFila(Fila fila);
+
+Item setInicioFila(Fila fila);
+Item setFimFila(Fila fila);
+int setSizeFila(Fila fila);
+int setQtdFila(Fila fila);
+
+bool isVaziaFila(Fila fila);
+bool isCheiaFila(Fila fila);
+void killFila(Fila fila);
 
 
 

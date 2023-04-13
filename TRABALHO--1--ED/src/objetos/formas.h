@@ -10,13 +10,19 @@ void *cria_circulo(char i[], char tipo[], char r[], char x[], char y[], char cor
 void *cria_linha(char i[], char tipo[], char x[], char y[], char x2[], char y2[], char cor[]);
 void *cria_texto(char i[], char tipo[], char x[], char y[], char corb[], char corp[], char txto[], char familia[], char tamanho[], char peso[], char ancora[]);
 
+// tipo:
+
+//Eu tinha que mudar, né?
+
+
+char get_tipo();
+
+void set_tipo();
+
 // Funções de set:
 
 // função que seta o id para qualquer tipo de formato
 void set_id(void *formato, char id[]);
-
-// função que seta o tipo para qualquer tipo de formato
-void set_tipo(void *formato, char tipo[]);
 
 // função que seta o x para qualquer tipo de formato
 void set_x(void *formato, char x[]);
@@ -69,9 +75,6 @@ void set_ancora(void *formato, char ancora[]);
 // função que retorna o id da forma
 char *get_id(void *formato);
 
-// função que retorna o tipo para qualquer tipo de formato
-char get_tipo(void *formato);
-
 
 // função que retorna o x para qualquer tipo de formato
 char *get_x(void *formato);
@@ -117,5 +120,7 @@ char *get_peso(void *formato);
 
 // função que retorna a ancora para texto
 char *get_ancora(void *formato);
+
+void killForma(void *formato);
 
 #endif
