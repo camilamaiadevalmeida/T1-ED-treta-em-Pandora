@@ -1,70 +1,119 @@
 #include "formas.h"
-#include "texto.h"
-#include "tipos.h"
-#include "../arqs/main.h"
+#include "../ed/lista.h"
+#include "../ed/fila.h"
+#include "../arqs/libsgerais.h"
 
 typedef struct retangulo
 {
-    char w[20];
-    char h[20];
+    char w[50];
+    char h[50];
 } Rect;
 
 typedef struct circulo
 {
-    char r[20];
+    char r[50];
 } Circ;
 
 typedef struct linha
 {
-    char x2[20];
-    char y2[20];
+    char x2[50];
+    char y2[50];
 } Linha;
 
 typedef struct texto
 {
-    enum TipoForma tipo; // COMENTARIO DO JEAN: isso aqui não precisa existir
-    enum TipoVeiculo tipoVeiculo;
-    struct balao *balaoDados;
-    struct caca *cacaDados;
     char txto[400];
-    char ancora[20];
-    char familia[20];
-    char tamanho[20];
-    char peso[20];
-    char rota[20];
+    char ancora[50];
+    char familia[50];
+    char tamanho[50];
+    char peso[50];
+    char rota[50];
 } Text;
 
-struct balao
+typedef struct balao
 {
-    double r;
-    double p;
-    double h;
+    char tipo[50];
+    char r[50];
+    char h[50];
+    char p[50];
     Fila *filaFotos[9];
-};
 
-struct caca
+} Balao;
+
+//quando o caca dispara, as ids dos alvos acertados vão pra um vetorzão
+typedef struct caca
 {
     int disparos;
-    Lista *alvosAcertados;
-};
+    int alvo[50];
+    int tamanhoAtual;
+
+} Caca;
 
 typedef struct formato
 {
     // coisas gerais
-    char id[20];
-    char tipo[20];
-    char x[20];
-    char y[20];
-    char corb[20];
-    char corp[20];
-    char rota[20];
+    char id[50];
+    char tipo[50];
+    char x[50];
+    char y[50];
+    char corb[50];
+    char corp[50];
+    char rota[50];
 
     // coisas especificas
     Rect retangulo;
     Circ circulo;
     Linha linha;
     Text texto;
+    Balao balao;
+    Caca caca;
 } Forma;
+
+
+void *cria_balao(char i[], char r[], char h[], char p[], char tipo[], char x[], char y[], char corb[], char corp[], char txto[], char familia[], char tamanho[], char peso[], char ancora[])
+{
+    Forma *balao = (Forma *)malloc(sizeof(Forma));
+
+    set_tipo(balao, tipo);
+    set_r(balao, r);
+    set_h(balao, h);
+    set_p(balao, p);
+    set_id(balao, i);
+    set_tipo(balao, tipo);
+    set_x(balao, x);
+    set_y(balao, y);
+    set_corb(balao, corb);
+    set_corp(balao, corp);
+    set_txto(balao, txto); 
+    set_familia(balao, familia);
+    set_tamanho(balao, tamanho);
+    set_peso(balao, peso);
+    set_ancora(balao, ancora);
+    set_rota(balao, "0");
+
+    return balao;
+}
+
+void *cria_caca(int disparos, char i[], char tipo[], char x[], char y[], char corb[], char corp[], char txto[], char familia[], char tamanho[], char peso[], char ancora[])
+{
+    Forma *caca = (Forma *)malloc(sizeof(Forma));
+    set_disparos(caca, disparos); 
+    set_id(caca, i);
+    set_tipo(caca, tipo);
+    set_x(caca, x);
+    set_y(caca, y);
+    set_corb(caca, corb);
+    set_corp(caca, corp);
+    set_txto(caca, txto); 
+    set_familia(caca, familia);
+    set_tamanho(caca, tamanho);
+    set_peso(caca, peso);
+    set_ancora(caca, ancora);
+    set_rota(caca, "0");
+
+    return caca;
+}
+
 
 void *cria_retangulo(char i[], char tipo[], char w[], char h[], char x[], char y[], char corb[], char corp[])
 {
@@ -129,47 +178,12 @@ void *cria_texto(char i[], char tipo[], char x[], char y[], char corb[], char co
     set_y(texto, y);
     set_corb(texto, corb);
     set_corp(texto, corp);
-    set_txto(texto, txto); // <--------------------------aqui
+    set_txto(texto, txto); 
     set_familia(texto, familia);
     set_tamanho(texto, tamanho);
     set_peso(texto, peso);
     set_ancora(texto, ancora);
-    set_rota(texto, "0");
-
-    strncpy(t->texto, txto, 50); // COMENTÁRIO DO JEAN: você já fez isso ali em cima
-    //COMENTÁRIO DO JEAN: todos esses t ai de baixo tem que ser texto ao invés de t
-    if (strlen(txto) > 50)
-    {
-        t->txto[49] = '\0';
-    }
-    if (strncmp(txto, "v_O_v", 5) == 0)
-    {
-        t->tipoVeiculo = BALAO;
-        t->balaoDados = (struct balao *)malloc(sizeof(struct balao));
-        t->balaoDados->r = 0;
-        t->balaoDados->p = 0;
-        t->balaoDados->h = 0;
-        for (int i = 0; i < 10; i++)
-        {
-            t->balaoDados->filaFotos[i] = criaFila(15);
-        }
-    }
-    else if (strncmp(txto, "|-T-|", 5) == 0)
-    {
-        t->tipoVeiculo = CACA;
-        t->cacaDados = (struct caca *)malloc(sizeof(struct caca));
-        t->cacaDados->disparosEfetuados = 0;
-        t->cacaDados->idsAcertados = createLst(-1);
-    }
-    else
-    {
-        t->tipoVeiculo = NENHUM;
-    }
-    t->rotacao = 0;
-    t->textoFamilia = familia;
-    t->textoPeso = peso;
-    t->textoTamanho = tamanho;
-
+    set_rota(texto, "0");  
     return texto;
 }
 
@@ -225,7 +239,7 @@ char *get_id(void *formato)
     return f->id;
 }
 
-char get_tipo(void *formato)
+char *get_tipo(void *formato)
 {
     Forma *f = (Forma *)formato;
     return f->tipo;
@@ -340,6 +354,15 @@ void set_h(void *formato, char h[])
 void set_r(void *formato, char r[])
 {
     Forma *f = (Forma *)formato;
+    switch ((f->tipo)[0])
+    {
+        case 'c':
+            strcpy(f->circulo.r, r);
+            break;
+        case 'b':
+            strcpy(f->balao.r, r);
+            break;
+    }
     strcpy(f->circulo.r, r);
 }
 
@@ -387,41 +410,48 @@ void set_ancora(void *formato, char ancora[])
 
 void killForma(void *formato)
 {
+    free(formato);
+}
+// Funções para a manipulação de caças e balões
+
+void set_p(void *formato, char p[])
+{
     Forma *f = (Forma *)formato;
-    // COMENTÁRIO DO JEAN: poe o tipo dentro do switch
-    switch ()
-    {
-    case 'r':
-        free(f->retangulo);
-        break;
-    case 'c':
-        free(f->circulo);
-        break;
-    case 'l':
-        free(f->linha);
-        break;
-    case 't':
-        struct texto *texto = (struct texto *)t;
-        free(f->texto);
-        if (texto->tipoVeiculo == BALAO)
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                destroiFila(texto->balaoDados->filaFotos[i]);
-            }
-            free(texto->balaoDados);
-        }
-        else if (texto->tipoVeiculo == CACA)
-        {
-            killLst(texto->cacaDados->alvosAcertados);
-            free(texto->cacaDados);
-        }
-        break;
-    }
+    strcpy(f->balao.p, p);
 }
 
-// faz sentido eu precisar receber o tipo antes
 
-// rotacionar e etc tbm
+char *get_p(void *formato)
+{
+    Forma *f = (Forma *)formato;
+    return f->balao.p;
+}
 
-// ideia:
+int get_disparos(void *formato)
+{
+    Forma *f = (Forma *)formato;
+    return f->caca.disparos;
+}
+
+void set_disparos(void *formato, int disparos)
+{
+    Forma *f = (Forma *)formato;
+    f->caca.disparos = disparos;
+}
+
+int *get_alvosAcertados(void *formato)
+{
+    Forma *f = (Forma *)formato;
+    return f->caca.alvo;
+}
+
+void inserirAlvos(void *formato, int alvo)
+{
+    Forma *f = (Forma *)formato;
+    f->caca.alvo[f->caca.tamanhoAtual] = alvo;
+    f->caca.tamanhoAtual++;
+    if(f->caca.tamanhoAtual >=50)
+    {
+        f->caca.tamanhoAtual = 0;
+    }
+}

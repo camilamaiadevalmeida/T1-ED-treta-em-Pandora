@@ -1,7 +1,7 @@
 #ifndef _FILA_H
 #define _FILA_H
 
-#include "../arqs/main.h"
+ #include "../arqs/libsgerais.h"
 #include "lista.h"
 /*
 Este módulo provê funções para manipular filas circulares estáticas.

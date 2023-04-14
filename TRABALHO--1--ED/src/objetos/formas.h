@@ -1,33 +1,43 @@
 #ifndef FORMAS_H
 #define FORMAS_H
 
-#include "../arqs/main.h"
+ #include "../arqs/libsgerais.h"
 
-enum TipoForma
-{
-    CIRCULO,
-    RETANGULO,
-    TEXTO,
-    LINHA
-};
+/* 
+Este módulo prove funções para criação e manipulação de formas geométricas.
+A ideia por trás do trabalho é promover a reciclagem de funções, bem como implementar, 
+dentro dos limites da linguagem C, o conceito de herança.
+Portanto, todos os tipos de formas geométricas do trabalho são manipulados
+por funções comuns. Esta escolha de implementação promove mais controle sobre os conceitos
+de forma e economia de memória.
+Assim, são definidas em formas.c 6 tipos de figuras:
+    - retângulo
+    - círculo
+    - linha
+    - texto
+    - caca
+    - balão
+A ideia por trás de caca e balão compartilharem os conceitos de figuras, vem do fato de que
+ambos também são textos e, portanto, podem ser definidos de acordo com os mesmos parâmetros de um texto comum.
+O que os difere são alguns poucos parâmetros, notáveis em suas implementações, bem como sua atuação nos confrontos
+que acontecem entre si no programa.
 
+A seguir, são definidas as funções que manipulam as figuras.
+*/
+
+// funções de criação
 void *cria_retangulo(char i[], char tipo[], char w[], char h[], char x[], char y[], char corb[], char corp[]);
 void *cria_circulo(char i[], char tipo[], char r[], char x[], char y[], char corb[], char corp[]);
 void *cria_linha(char i[], char tipo[], char x[], char y[], char x2[], char y2[], char cor[]);
 void *cria_texto(char i[], char tipo[], char x[], char y[], char corb[], char corp[], char txto[], char familia[], char tamanho[], char peso[], char ancora[]);
+void *cria_caca(int disparos, char tipo[], char i[], char x[], char y[], char corb[], char corp[], char txto[], char familia[], char tamanho[], char peso[], char ancora[]);
+void *cria_balao(char i[], char r[], char h[], char p[], char tipo[], char x[], char y[], char corb[], char corp[], char txto[], char familia[], char tamanho[], char peso[], char ancora[]);
 
-// tipo:
+//função que seta a profundidade
+void set_p(void *formato, char p[]);
 
-// Eu tinha que mudar, né?
-
-// COMENTÁRIO DO JEAN: não. o problema não tá na lógica que você fez as coisas, tá no jeito que tá escrito só.
-// se tu quer que todos os campos sejam string continua assim, não fica mudando as coisas só pra ficar igual ao meu código.
-
-char get_tipo();
-
-void set_tipo();
-
-// Funções de set:
+//função que seta o tipo
+void set_tipo(void *formato, char tipo[]);
 
 // função que seta o id para qualquer tipo de formato
 void set_id(void *formato, char id[]);
@@ -82,6 +92,9 @@ void set_ancora(void *formato, char ancora[]);
 // função que retorna o id da forma
 char *get_id(void *formato);
 
+// função que retorna o tipo da forma
+char *get_tipo(void *formato);
+
 // função que retorna o x para qualquer tipo de formato
 char *get_x(void *formato);
 
@@ -127,6 +140,23 @@ char *get_peso(void *formato);
 // função que retorna a ancora para texto
 char *get_ancora(void *formato);
 
+// função que retorna a profundidade para o balão
+char *get_p(void *formato);
+
+// função que seta os disparos
+void set_disparos(void *formato, int disparos);
+
+// insere alvos
+void inserirAlvos(void *formato, int alvo);
+
+// função que recebe os disparos
+int get_disparos(void *formato);
+
+// função que recebe os alvos
+int *get_alvosAcertados(void *formato);
+
+// função que retorna a profundidade para o balão
 void killForma(void *formato);
+
 
 #endif

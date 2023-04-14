@@ -7,4 +7,5 @@
 #include <string.h>
 #include <math.h>
 
+//Este módulo concentra as principais bibliotecas, de modo que facilita no momento da implementação
 #endif

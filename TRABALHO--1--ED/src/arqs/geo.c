@@ -1,132 +1,118 @@
 #include "geo.h"
 #include "../objetos/formas.h"
-#include "../arqs/main.h"
+#include "../arqs/libsgerais.h"
+#include "../ed/lista.h"
 
-// COMENTÁRIO DO JEAN: essas variáveis não precisam ser globais, só enfia elas na função
-char x[20];
-char y[20];
-char corb[20];
-char corp[20];
-char i[20];
-char rota[20]; // todos tem
 
-char r[20]; // c
+#define MAX_GEO_LINES 1000
+#define MAX_GEO_LENTGH 100
 
-char w[20];
-char h[20]; // r
-
-char x2[20];
-char y2[20];
-char cor[20]; // l
-
-char txto[400]; // t
-
-void dealWithGeo(FILE *geo, Lista *listas[])
+void dealWithGeo(FILE *geo, Lista lst)
 {
-
+    char *x = (char*) malloc(50 * sizeof(char));
+    char *y = (char*) malloc(50 * sizeof(char));
+    char *corb = (char*) malloc(50 * sizeof(char));
+    char *corp = (char*) malloc(50 * sizeof(char));
+    char *i = (char*) malloc(50 * sizeof(char));
+    char *r = (char*) malloc(50 * sizeof(char)); // c
+    char *w = (char*) malloc(50 * sizeof(char));
+    char *h = (char*) malloc(50 * sizeof(char)); // r
+    char *x2 = (char*) malloc(50 * sizeof(char));
+    char *y2 = (char*) malloc(50 * sizeof(char));
+    char *cor = (char*) malloc(50 * sizeof(char));  // l
+    char *txto = (char*) malloc(400 * sizeof(char)); // t
+    char *ancora = (char*) malloc(50 * sizeof(char));
+    char *familia = (char*) malloc(50 * sizeof(char));
+    char *tamanho = (char*) malloc(50 * sizeof(char));
+    char *peso = (char*) malloc(50 * sizeof(char));
+    char tipo;
     void *retan;
     void *circ;
     void *lin;
     void *txt;
+    char fim;
 
-    char tipo_forma[100];
-    char final;
-    final = getc(geo);
+    fim = getc(geo);
     fseek(geo, 0, SEEK_SET);
 
-    while (final != EOF)
+    while (fim != EOF)
     {
-
-        fscanf(geo, "%s", tipo_forma);
-
-        if (strcmp(tipo_forma, "r") == 0)
+        char *ponteiroPalavra;
+        //strtok(ponteiroPalavra,tipo," ");
+        switch (ponteiroPalavra[0])
         {
-            // apagar isso aqui
-            //---------------------------------------------
-            fscanf(geo, "%s", i);
-            fscanf(geo, "%s", w);
-            fscanf(geo, "%s", h);
-            fscanf(geo, "%s", x);
-            fscanf(geo, "%s", y);
-            fscanf(geo, "%s", corb);
-            fscanf(geo, "%s", corp);
-            fscanf(geo, "%s", rota);
-            //---------------------------------------------
-            // COMENTARIO DO JEAN: isso aí não funciona pq o fscanf lê uma linha
-            // inteira. tu precisa fazer ou um sscanf do tipo_forma do jeito que
-            // vai ler a forma ou um strtok pra separar cada palavra da linha
-
-            // 1 - sscanf(tipo_forma, "%s %s %s %s %s %s %s", i, x, y, w, h, corb, corp);
-
-            // 2 - ponteiroPalavra = strtok(tipo_forma, " ");
-            //     *fazer coisas com a primeira palavra*
-            //     ponteiroPalavra = strtok(NULL, " ");
-            //     *fazer coisas com a segunda palavra*
-            //     ponteiroPalavra = strtok(NULL, " ");
-            //     etc
-
-            // COMENTARIO DO JEAN: passa o mouse por cima do nome da função pra ver
-            // o que precisa por e em que ordem. NAO CONFIE NO COPILOT
-            retan = cria_retangulo(i, w, h, x, y, corb, corp, rota);
-
-            // COMENTARIO DO JEAN: que listas mano como assim
-            for (int aux = 0; aux < 10; aux++)
-            { // inserindo em todas as listas
-                insere_lista_final("r", listas[aux], retan);
-            }
+        case 'c':
+            strcpy(i, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(x, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(y, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(r, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(corb, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(corp, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            circ = cria_circulo("c", i, x, y, r, corb, corp);
+            //inserir figura na lista
+            insertLst(lst, circ);
+            break;
+        case 'r':
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(i, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(x, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(y, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(w, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(h, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(corb, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(corp, ponteiroPalavra);
+            retan = cria_retangulo("r", i, x, y, w, h, corb, corp);
+            //inserir figura na lista
+            insertLst(lst, retan);
+            break;
+        case 't':
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(i, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(x, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(y, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(corb, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(corp, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(ancora, ponteiroPalavra); 
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(txto, ponteiroPalavra);
+            txt = cria_texto("t", i, x, y, corb, corp, ancora, txto, tamanho, familia, peso);
+            //inserir figura na lista
+            insertLst(lst, txt);
+            break;
+        case 'l':
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(i, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(x, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(y, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(x2, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(y2, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(cor, ponteiroPalavra);
+            lin = cria_linha("l", i, x, y, x2, y2, cor);
+            //inserir figura na lista
+            insertLst(lst, lin);
+            break;
         }
-        else if (strcmp(tipo_forma, "c") == 0)
-        {
-
-            fscanf(geo, "%s", i);
-            fscanf(geo, "%s", r);
-            fscanf(geo, "%s", x);
-            fscanf(geo, "%s", y);
-            fscanf(geo, "%s", corb);
-            fscanf(geo, "%s", corp);
-            fscanf(geo, "%s", rota);
-
-            circ = cria_circulo(i, r, x, y, corb, corp, rota);
-
-            for (int aux = 0; aux < 10; aux++)
-            {
-                insere_lista_final("c", listas[aux], circ);
-            }
-        }
-        else if (strcmp(tipo_forma, "t") == 0)
-        {
-
-            fscanf(geo, "%s", i);
-            fscanf(geo, "%s", x);
-            fscanf(geo, "%s", y);
-            fscanf(geo, "%s", corb);
-            fscanf(geo, "%s", corp);
-            fscanf(geo, "%[^\n]s", txto); // COMENTARIO DO JEAN: que
-            fscanf(geo, "%s", rota);
-
-            txt = cria_texto(i, x, y, corb, corp, txto, rota);
-            for (int aux = 0; aux < 10; aux++)
-            {
-                insere_lista_final("t", listas[aux], txt);
-            }
-        }
-        else if (strcmp(tipo_forma, "l") == 0)
-        {
-
-            fscanf(geo, "%s", i);
-            fscanf(geo, "%s", x);
-            fscanf(geo, "%s", y);
-            fscanf(geo, "%s", x2);
-            fscanf(geo, "%s", y2);
-            fscanf(geo, "%s", cor);
-            fscanf(geo, "%s", rota);
-
-            lin = cria_linha(i, x, y, x2, y2, cor, rota);
-            for (int aux = 0; aux < 10; aux++)
-            {
-                insere_lista_final("l", listas[aux], lin);
-            }
-        }
-        final = getc(geo);
     }
 }
