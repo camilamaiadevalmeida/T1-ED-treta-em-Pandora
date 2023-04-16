@@ -36,15 +36,15 @@ typedef struct balao
     char r[50];
     char h[50];
     char p[50];
-    Fila *filaFotos[9];
+    Fila filaFotos[9];
 
 } Balao;
 
-//quando o caca dispara, as ids dos alvos acertados vão pra um vetorzão
+// quando o caca dispara, as ids dos alvos acertados vão pra um vetorzão
 typedef struct caca
 {
     int disparos;
-    int alvo[50];
+    int alvo[500];
     int tamanhoAtual;
 
 } Caca;
@@ -69,7 +69,6 @@ typedef struct formato
     Caca caca;
 } Forma;
 
-
 void *cria_balao(char i[], char tipo[], char x[], char y[], char corb[], char corp[], char txto[], char familia[], char tamanho[], char peso[], char ancora[])
 {
     Forma *balao = (Forma *)malloc(sizeof(Forma));
@@ -81,7 +80,7 @@ void *cria_balao(char i[], char tipo[], char x[], char y[], char corb[], char co
     set_y(balao, y);
     set_corb(balao, corb);
     set_corp(balao, corp);
-    set_txto(balao, txto); 
+    set_txto(balao, txto);
     set_familia(balao, familia);
     set_tamanho(balao, tamanho);
     set_peso(balao, peso);
@@ -100,7 +99,7 @@ void *cria_caca(char i[], char tipo[], char x[], char y[], char corb[], char cor
     set_y(caca, y);
     set_corb(caca, corb);
     set_corp(caca, corp);
-    set_txto(caca, txto); 
+    set_txto(caca, txto);
     set_familia(caca, familia);
     set_tamanho(caca, tamanho);
     set_peso(caca, peso);
@@ -109,7 +108,6 @@ void *cria_caca(char i[], char tipo[], char x[], char y[], char corb[], char cor
 
     return caca;
 }
-
 
 void *cria_retangulo(char i[], char tipo[], char w[], char h[], char x[], char y[], char corb[], char corp[])
 {
@@ -129,7 +127,7 @@ void *cria_retangulo(char i[], char tipo[], char w[], char h[], char x[], char y
     return retangulo;
 }
 
-//cria_circulo(char i[], char tipo[], char r[], char x[], char y[], char corb[], char corp[])
+// cria_circulo(char i[], char tipo[], char r[], char x[], char y[], char corb[], char corp[])
 void *cria_circulo(char i[], char tipo[], char r[], char x[], char y[], char corb[], char corp[])
 {
     Forma *circulo = (Forma *)malloc(sizeof(Forma));
@@ -175,12 +173,12 @@ void *cria_texto(char i[], char tipo[], char x[], char y[], char corb[], char co
     set_y(texto, y);
     set_corb(texto, corb);
     set_corp(texto, corp);
-    set_txto(texto, txto); 
+    set_txto(texto, txto);
     set_familia(texto, familia);
     set_tamanho(texto, tamanho);
     set_peso(texto, peso);
     set_ancora(texto, ancora);
-    set_rota(texto, "0");  
+    set_rota(texto, "0");
     return texto;
 }
 
@@ -353,12 +351,12 @@ void set_r(void *formato, char r[])
     Forma *f = (Forma *)formato;
     switch ((f->tipo)[0])
     {
-        case 'c':
-            strcpy(f->circulo.r, r);
-            break;
-        case 'b':
-            strcpy(f->balao.r, r);
-            break;
+    case 'c':
+        strcpy(f->circulo.r, r);
+        break;
+    case 'b':
+        strcpy(f->balao.r, r);
+        break;
     }
     strcpy(f->circulo.r, r);
 }
@@ -417,7 +415,6 @@ void set_p(void *formato, char p[])
     strcpy(f->balao.p, p);
 }
 
-
 char *get_p(void *formato)
 {
     Forma *f = (Forma *)formato;
@@ -447,8 +444,20 @@ void inserirAlvos(void *formato, int alvo)
     Forma *f = (Forma *)formato;
     f->caca.alvo[f->caca.tamanhoAtual] = alvo;
     f->caca.tamanhoAtual++;
-    if(f->caca.tamanhoAtual >=50)
+    if (f->caca.tamanhoAtual >= 500)
     {
         f->caca.tamanhoAtual = 0;
     }
+}
+
+int get_tamanhoAtual(void *formato)
+{
+    Forma *f = (Forma *)formato;
+    return f->caca.tamanhoAtual;
+}
+
+void *get_fila(void *formato, int posicao)
+{
+    Forma *f = (Forma *)formato;
+    return f->balao.filaFotos[posicao];
 }

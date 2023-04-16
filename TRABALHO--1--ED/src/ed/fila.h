@@ -1,7 +1,7 @@
 #ifndef _FILA_H
 #define _FILA_H
 
- #include "../arqs/libsgerais.h"
+#include "../arqs/libsgerais.h"
 #include "lista.h"
 /*
 Este módulo provê funções para manipular filas circulares estáticas.
@@ -28,13 +28,9 @@ bool removeElemFila(Fila fila);
 
 Item getInicioFila(Fila fila);
 Item getFimFila(Fila fila);
-int getMaxSizeFila(Fila fila);
+int getSizeFila(Fila fila);
 int getQtdFila(Fila fila);
 
-Item setInicioFila(Fila fila);
-Item setFimFila(Fila fila);
-int setSizeFila(Fila fila);
-int setQtdFila(Fila fila);
 
 bool isVaziaFila(Fila fila);
 bool isCheiaFila(Fila fila);

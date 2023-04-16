@@ -1,11 +1,11 @@
 #ifndef FORMAS_H
 #define FORMAS_H
 
- #include "../arqs/libsgerais.h"
+#include "../arqs/libsgerais.h"
 
-/* 
+/*
 Este módulo prove funções para criação e manipulação de formas geométricas.
-A ideia por trás do trabalho é promover a reciclagem de funções, bem como implementar, 
+A ideia por trás do trabalho é promover a reciclagem de funções, bem como implementar,
 dentro dos limites da linguagem C, o conceito de herança.
 Portanto, todos os tipos de formas geométricas do trabalho são manipulados
 por funções comuns. Esta escolha de implementação promove mais controle sobre os conceitos
@@ -33,10 +33,10 @@ void *cria_texto(char i[], char tipo[], char x[], char y[], char corb[], char co
 void *cria_caca(char i[], char tipo[], char x[], char y[], char corb[], char corp[], char txto[], char familia[], char tamanho[], char peso[], char ancora[]);
 void *cria_balao(char i[], char tipo[], char x[], char y[], char corb[], char corp[], char txto[], char familia[], char tamanho[], char peso[], char ancora[]);
 
-//função que seta a profundidade
+// função que seta a profundidade
 void set_p(void *formato, char p[]);
 
-//função que seta o tipo
+// função que seta o tipo
 void set_tipo(void *formato, char tipo[]);
 
 // função que seta o id para qualquer tipo de formato
@@ -155,8 +155,10 @@ int get_disparos(void *formato);
 // função que recebe os alvos
 int *get_alvosAcertados(void *formato);
 
-// função que retorna a profundidade para o balão
-void killForma(void *formato);
+// função que retorna o tamanho atual dos alvos atingidos
+int get_tamanhoAtual(void *formato)
 
+    // função que retorna uma fila de fotos específica
+    void *get_fila(void *formato, int posicao);
 
 #endif
