@@ -1,11 +1,12 @@
 {
   "configurations": [
+    
   {
     "name": "(gdb) Launch",
     "type": "cppdbg",
     "request": "launch",
-    "program": "${workspaceFolder}/TRABALHO--1--ED/src/ted",
-    "args": ["-e", "/home/mila/Documents/testes/", "-f", "01-caca-fotos.geo", "-o", "/home/mila/Documents/testes/"],
+    "program": "enter program name, for example ${workspaceFolder}/a.out",
+    "args": [],
     "stopAtEntry": false,
     "cwd": "${fileDirname}",
     "environment": [],
