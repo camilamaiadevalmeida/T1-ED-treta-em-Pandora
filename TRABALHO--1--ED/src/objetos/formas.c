@@ -129,6 +129,7 @@ void *cria_retangulo(char i[], char tipo[], char w[], char h[], char x[], char y
     return retangulo;
 }
 
+//cria_circulo(char i[], char tipo[], char r[], char x[], char y[], char corb[], char corp[])
 void *cria_circulo(char i[], char tipo[], char r[], char x[], char y[], char corb[], char corp[])
 {
     Forma *circulo = (Forma *)malloc(sizeof(Forma));

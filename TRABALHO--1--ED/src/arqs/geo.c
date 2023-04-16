@@ -27,6 +27,9 @@ void dealWithGeo(FILE *geo, Lista lst)
     void *lin;
     void *txt;
     char fim;
+    familia = strcpy(familia, "Arial");
+    tamanho = strcpy(tamanho, "12px");
+    peso = strcpy(peso, "normal");
 
     fseek(geo, 0, SEEK_SET);
     fim = 1; // para entrar no while
@@ -46,6 +49,7 @@ void dealWithGeo(FILE *geo, Lista lst)
         switch (tipo)
         {
         case 'c':
+            ponteiroPalavra = strtok(NULL, " ");
             strcpy(i, ponteiroPalavra);
             ponteiroPalavra = strtok(NULL, " ");
             strcpy(x, ponteiroPalavra);

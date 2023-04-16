@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
     
 
     fold(listona, escreveSvg, arqSvg);
-    svg_finalize(arqSvg);
+    fprintf(arqSvg, "</svg>\n");
     fclose(arqGeo);
     if (strcmp(nomeQry, "") != 0)
         fclose(arqQry);

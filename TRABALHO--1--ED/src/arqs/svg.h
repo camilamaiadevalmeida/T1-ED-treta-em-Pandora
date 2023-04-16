@@ -15,24 +15,10 @@ instruções para desenhar formas geométricas, como retângulos, círculos, lin
 //Inicia um arquivo SVG//
 void svg_init(FILE *svg);
 
-//Finaliza um arquivo SVG//
-void svg_finalize(FILE *svg);
-
-//Fecha o arquivo SVG//
-void svg_close(FILE *file);
-
-void desenhaItemSVG(Item item, void *closure, const char *filename);
-
 //Escreve no arquivo svg (clausura) o item atual//
 void escreveSvg(Item item, Clausura c);
 
 //Definição de clausura usada na função ApplyClosure escreveSvg//
 typedef void *clausuraSvg;
-
-//Cria uma clausura que guarda o arquivo svg//
-clausuraSvg criaClausuraSvg(FILE *svg);
-
-//Libera a memória alocada para a clausura//
-void liberaClausuraSvg(Clausura c);
 
 #endif
