@@ -46,46 +46,72 @@ void dealWithGeo(FILE *geo, Lista lst)
         switch (tipo)
         {
         case 'c':
-            strcpy(i, ponteiroPalavra[1]);
-            strcpy(x, ponteiroPalavra[2]);
-            strcpy(y, ponteiroPalavra[3]);
-            strcpy(r, ponteiroPalavra[4]);
-            strcpy(corb, ponteiroPalavra[5]);
-            strcpy(corp, ponteiroPalavra[6]);
+            strcpy(i, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(x, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(y, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(r, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(corb, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(corp, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
             circ = cria_circulo("c", i, x, y, r, corb, corp);
             // inserir figura na lista
             insertLst(lst, circ);
             break;
         case 'r':
-            strcpy(i, ponteiroPalavra[1]);
-            strcpy(x, ponteiroPalavra[2]);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(i, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
+            strcpy(x, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
             strcpy(y, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
             strcpy(w, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
             strcpy(h, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
             strcpy(corb, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
             strcpy(corp, ponteiroPalavra);
             retan = cria_retangulo("r", i, x, y, w, h, corb, corp);
             // inserir figura na lista
             insertLst(lst, retan);
             break;
         case 't':
+            ponteiroPalavra = strtok(NULL, " ");
             strcpy(i, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
             strcpy(x, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
             strcpy(y, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
             strcpy(corb, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
             strcpy(corp, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
             strcpy(ancora, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
             strcpy(txto, ponteiroPalavra);
             txt = cria_texto("t", i, x, y, corb, corp, ancora, txto, tamanho, familia, peso);
             // inserir figura na lista
             insertLst(lst, txt);
             break;
         case 'l':
+            ponteiroPalavra = strtok(NULL, " ");
             strcpy(i, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
             strcpy(x, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
             strcpy(y, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
             strcpy(x2, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
             strcpy(y2, ponteiroPalavra);
+            ponteiroPalavra = strtok(NULL, " ");
             strcpy(cor, ponteiroPalavra);
             lin = cria_linha("l", i, x, y, x2, y2, cor);
             // inserir figura na lista

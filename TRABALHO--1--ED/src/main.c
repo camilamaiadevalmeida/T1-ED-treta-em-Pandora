@@ -3,7 +3,7 @@
 #include "arqs/geo.h"
 #include "arqs/svg.h"
 
-#include<string.h> 
+#include <string.h>
 
 #define MAX 150
 
@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     char *entrada = "./";
     char *nomeGeo = "";
     char *nomeQry = "";
-    char *saida = "./"; //localização de onde os arquivos vão ser gerados
+    char *saida = "./"; // localização de onde os arquivos vão ser gerados
 
     // leitura dos argumentos
     for (int i = 0; i < argc; i++)
@@ -37,17 +37,17 @@ int main(int argc, char *argv[])
             saida = argv[i + 1];
         }
     }
-    
+
     // nomes completos dos arquivos
     char *geo = (char *)malloc((strlen(entrada) + strlen(nomeGeo) + 1) * sizeof(char));
     char *qry = (char *)malloc((strlen(entrada) + strlen(nomeQry) + 1) * sizeof(char));
-    char *svg = (char *)malloc((strlen(saida) + strlen(nomeGeo) + strlen(nomeQry) +1) * sizeof(char));
+    char *svg = (char *)malloc((strlen(saida) + strlen(nomeGeo) + strlen(nomeQry) + 1) * sizeof(char));
 
     // função que 'preparam' a criação do nome
     strcpy(geo, entrada);
     strcpy(qry, entrada);
     strcpy(svg, saida);
-    
+
     // funções que criam o nome
     strcat(geo, nomeGeo);
     strcat(qry, nomeQry);
@@ -56,8 +56,10 @@ int main(int argc, char *argv[])
     strcat(svg, nomeQry);
 
     // abrir arquivos
+    FILE *arqQry;
     FILE *arqGeo = fopen(geo, "r");
-    FILE *arqQry = fopen(qry, "r");
+    if (strcmp(nomeQry, "") != 0)
+        arqQry = fopen(qry, "r");
     FILE *arqSvg = fopen(svg, "w");
 
     // ler GEO
@@ -66,10 +68,10 @@ int main(int argc, char *argv[])
 
     fold(listona, escreveSvg, arqSvg);
 
+    fclose(arqGeo);
+    if (strcmp(nomeQry, "") != 0)
+        fclose(arqQry);
+    fclose(arqSvg);
 
-
-
-
-    
-
+    free(geo);
 }

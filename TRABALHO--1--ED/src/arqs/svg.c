@@ -15,10 +15,6 @@ void svg_finalize(FILE *svg)
     fprintf(svg, "</svg>\n");
 }
 
-void svg_close(FILE *file)
-{
-    fclose(file);
-}
 
 struct clausuraSvg
 {
@@ -47,5 +43,4 @@ void escreveSvg(Item item, Clausura c)
         break;
     }
     fprintf(file, "</svg>\n");
-    fclose(file);
 }
