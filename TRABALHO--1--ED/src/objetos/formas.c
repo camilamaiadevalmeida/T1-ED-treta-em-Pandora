@@ -70,14 +70,11 @@ typedef struct formato
 } Forma;
 
 
-void *cria_balao(char i[], char r[], char h[], char p[], char tipo[], char x[], char y[], char corb[], char corp[], char txto[], char familia[], char tamanho[], char peso[], char ancora[])
+void *cria_balao(char i[], char tipo[], char x[], char y[], char corb[], char corp[], char txto[], char familia[], char tamanho[], char peso[], char ancora[])
 {
     Forma *balao = (Forma *)malloc(sizeof(Forma));
 
     set_tipo(balao, tipo);
-    set_r(balao, r);
-    set_h(balao, h);
-    set_p(balao, p);
     set_id(balao, i);
     set_tipo(balao, tipo);
     set_x(balao, x);
@@ -94,10 +91,9 @@ void *cria_balao(char i[], char r[], char h[], char p[], char tipo[], char x[], 
     return balao;
 }
 
-void *cria_caca(int disparos, char i[], char tipo[], char x[], char y[], char corb[], char corp[], char txto[], char familia[], char tamanho[], char peso[], char ancora[])
+void *cria_caca(char i[], char tipo[], char x[], char y[], char corb[], char corp[], char txto[], char familia[], char tamanho[], char peso[], char ancora[])
 {
     Forma *caca = (Forma *)malloc(sizeof(Forma));
-    set_disparos(caca, disparos); 
     set_id(caca, i);
     set_tipo(caca, tipo);
     set_x(caca, x);

@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
     // nomes completos dos arquivos
     char *geo = (char *)malloc((strlen(entrada) + strlen(nomeGeo) + 1) * sizeof(char));
     char *qry = (char *)malloc((strlen(entrada) + strlen(nomeQry) + 1) * sizeof(char));
-    char *svg = (char *)malloc((strlen(saida) + strlen(nomeGeo) + strlen(nomeQry) + 1) * sizeof(char));
+    char *svg = (char *)malloc((strlen(saida) + strlen(nomeGeo) + strlen(nomeQry) + 10) * sizeof(char));
 
     // função que 'preparam' a criação do nome
     strcpy(geo, entrada);
@@ -54,6 +54,7 @@ int main(int argc, char *argv[])
     strcat(svg, nomeGeo);
     strcat(svg, "-");
     strcat(svg, nomeQry);
+    strcat(svg, ".svg");
 
     // abrir arquivos
     FILE *arqQry;
@@ -63,11 +64,13 @@ int main(int argc, char *argv[])
     FILE *arqSvg = fopen(svg, "w");
 
     // ler GEO
+    svg_init(arqSvg);
     Lista *listona = createLst(-1);
     dealWithGeo(arqGeo, listona);
+    
 
     fold(listona, escreveSvg, arqSvg);
-
+    svg_finalize(arqSvg);
     fclose(arqGeo);
     if (strcmp(nomeQry, "") != 0)
         fclose(arqQry);
