@@ -12,6 +12,18 @@ struct idAchado
     void *formaAchada;
 };
 
+struct baloesAchados
+{
+    char baloesAchados[50];
+    void *balaoEncontrado;
+};
+
+struct cacasAchados
+{
+    char cacasAchadas[50];
+    void *cacaEncontrada;
+};
+
 void achaForma(Item item, Clausura c)
 {
     struct idAchado *id = (struct idAchado *)c;
@@ -20,12 +32,26 @@ void achaForma(Item item, Clausura c)
 }
 
 // funçao do fold tem que ver se o elemento atual é um balão
-void achaBalao(Item item, Clausura c)
-{
-    //aplica em cada elemento
-    
+//Função que percorre a lista, encontra o tipo "b" e  depois reporta os dados dos balões
+void reportaBaloes(Item item, Clausura c) {
+    FILE *arq = (FILE*) c;
+    //ler do começo da lista até o final
+
+    if (strcmp(get_tipo(item), "b") == 0) {
+        fprintf(arq, "ID=%s X=%s Y=%s W=%s H=%s CorB=%s CorP=%s Texto=%s\n",
+            get_id(item), get_x(item), get_y(item), get_corb(item), get_corp(item), get_texto(item), get_familia(item), get_tamanho(item), get_peso(item), get_ancora(item), get_rota(item));
+    }
 }
 
+void reportaCacas(Item item, Clausura c){
+    FILE *arq = (FILE*) c;
+    //ler do começo da lista até o final
+
+    if (strcmp(get_tipo(item), "c") == 0) {
+        fprintf(arq, "ID=%s X=%s Y=%s R=%s CorB=%s CorP=%s Texto=%s\n",
+            get_id(item), get_x(item), get_y(item), get_corb(item), get_corp(item), get_texto(item), get_familia(item), get_tamanho(item), get_peso(item), get_ancora(item), get_rota(item));
+    }
+}
 void dealWithQry(FILE *qry, Lista lst)
 {
     char tipo;
@@ -44,6 +70,8 @@ void dealWithQry(FILE *qry, Lista lst)
     int filaEscolhida;
     int filaAchada;
     struct idAchado idStruct;
+    struct baloesAchados baloesFound;
+    struct cacasAchados cacasFound;
     fseek(qry, 0, SEEK_SET);
     fim = 1; // para entrar no while
     char *linha = (char *)malloc(500 * sizeof(char));
@@ -129,22 +157,30 @@ void dealWithQry(FILE *qry, Lista lst)
             fold(lst, achaForma, &idStruct);
             
         }
+        /*  Envia fotos da lista l do balão i para a base.
+            Base categoriza cada foto.
+            TXT: para cada foto enviada, reportar
+            identicador e atributos da foto e pontuação.6
+            SVG: cria novo svg com mesmo nome do svg
+            + sufixo sfx (ex. a1-q1-sfx.svg) mostrando as
+            fotos baixadas em sequência
+            */
         else if (strcmp(ponteiroPalavra, "df") == 0)
         {
         }
+        
         else if (strcmp(ponteiroPalavra, "d") == 0)
         {
         }
         else if (strcmp(ponteiroPalavra, "b?") == 0)
         {
-            fold
-            // funçao do fold tem que ver se o elemento atual é um balão
-
-
-            // se for, escreve ele no txt
+            fold(lst, reportaBaloes, &baloesFound);
+            // + questão das fotos
         }
+        //Reporta os dados de todos as caças existentes: seus atributos, a rotação corrente, quantos disparos já efetuou e os identificadores dos elementos que acertou até o momento.
         else if (strcmp(ponteiroPalavra, "c?") == 0)
         {
+            fold(lst, reportaCacas, &cacasFound);
         }
     }
 }

@@ -7,6 +7,8 @@
 #include "../objetos/formas.h"
 
 void dealWithQry(FILE *qry, Lista lst);
+void reportaBaloes(Item item, Clausura c);
+
 
 
 
