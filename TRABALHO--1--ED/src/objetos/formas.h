@@ -156,9 +156,12 @@ int get_disparos(void *formato);
 int *get_alvosAcertados(void *formato);
 
 // função que retorna o tamanho atual dos alvos atingidos
-int get_tamanhoAtual(void *formato)
+int get_tamanhoAtual(void *formato);
 
-    // função que retorna uma fila de fotos específica
-    void *get_fila(void *formato, int posicao);
+// função que retorna uma fila de fotos específica
+void* get_fila(void *formato, int posicao);
+
+// função que transforma em forma
+void* transformaEmForma(char *linha);    
 
 #endif

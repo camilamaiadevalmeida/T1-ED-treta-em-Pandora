@@ -12,17 +12,7 @@ struct idAchado
     void *formaAchada;
 };
 
-struct baloesAchados
-{
-    char baloesAchados[50];
-    void *balaoEncontrado;
-};
 
-struct cacasAchados
-{
-    char cacasAchadas[50];
-    void *cacaEncontrada;
-};
 
 void achaForma(Item item, Clausura c)
 {
@@ -31,6 +21,8 @@ void achaForma(Item item, Clausura c)
         id->formaAchada = item;
 }
 
+//TROCAR POR REPORTAR ATRIBUTOS PQ ELE JA FEZ NO .TXT
+
 // funçao do fold tem que ver se o elemento atual é um balão
 //Função que percorre a lista, encontra o tipo "b" e  depois reporta os dados dos balões
 void reportaBaloes(Item item, Clausura c) {
@@ -38,8 +30,7 @@ void reportaBaloes(Item item, Clausura c) {
     //ler do começo da lista até o final
 
     if (strcmp(get_tipo(item), "b") == 0) {
-        fprintf(arq, "ID=%s X=%s Y=%s W=%s H=%s CorB=%s CorP=%s Texto=%s\n",
-            get_id(item), get_x(item), get_y(item), get_corb(item), get_corp(item), get_texto(item), get_familia(item), get_tamanho(item), get_peso(item), get_ancora(item), get_rota(item));
+        //repo//...
     }
 }
 
@@ -70,8 +61,6 @@ void dealWithQry(FILE *qry, Lista lst)
     int filaEscolhida;
     int filaAchada;
     struct idAchado idStruct;
-    struct baloesAchados baloesFound;
-    struct cacasAchados cacasFound;
     fseek(qry, 0, SEEK_SET);
     fim = 1; // para entrar no while
     char *linha = (char *)malloc(500 * sizeof(char));
@@ -168,19 +157,21 @@ void dealWithQry(FILE *qry, Lista lst)
         else if (strcmp(ponteiroPalavra, "df") == 0)
         {
         }
-        
+
         else if (strcmp(ponteiroPalavra, "d") == 0)
         {
         }
         else if (strcmp(ponteiroPalavra, "b?") == 0)
         {
-            fold(lst, reportaBaloes, &baloesFound);
+            //PASSA O TXT COMO CLAUSURA AO INVÉS DE NULL OU DE STRUCT QQR COISA
+            //
+            fold(lst, reportaBaloes, ArquivoTxt);
             // + questão das fotos
         }
         //Reporta os dados de todos as caças existentes: seus atributos, a rotação corrente, quantos disparos já efetuou e os identificadores dos elementos que acertou até o momento.
         else if (strcmp(ponteiroPalavra, "c?") == 0)
         {
-            fold(lst, reportaCacas, &cacasFound);
+            fold(lst, reportaCacas, );
         }
     }
 }

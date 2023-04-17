@@ -461,3 +461,81 @@ void *get_fila(void *formato, int posicao)
     Forma *f = (Forma *)formato;
     return f->balao.filaFotos[posicao];
 }
+
+//função que transforma em forma -------------> copilokinho
+void *transformaEmForma(char *linha)
+{
+    Forma *f = (Forma *)malloc(sizeof(Forma));
+    char *token = strtok(linha, " ");
+    strcpy(f->tipo, token);
+    token = strtok(NULL, " ");
+    strcpy(f->id, token);
+    token = strtok(NULL, " ");
+    strcpy(f->corb, token);
+    token = strtok(NULL, " ");
+    strcpy(f->corp, token);
+    token = strtok(NULL, " ");
+    strcpy(f->rota, token);
+    token = strtok(NULL, " ");
+    strcpy(f->x, token);
+    token = strtok(NULL, " ");
+    strcpy(f->y, token);
+    if (strcmp(f->tipo, "r") == 0)
+    {
+        token = strtok(NULL, " ");
+        strcpy(f->retangulo.w, token);
+        token = strtok(NULL, " ");
+        strcpy(f->retangulo.h, token);
+    }
+    else if (strcmp(f->tipo, "c") == 0)
+    {
+        token = strtok(NULL, " ");
+        strcpy(f->circulo.r, token);
+    }
+    else if (strcmp(f->tipo, "l") == 0)
+    {
+        token = strtok(NULL, " ");
+        strcpy(f->linha.x2, token);
+        token = strtok(NULL, " ");
+        strcpy(f->linha.y2, token);
+    }
+    else if (strcmp(f->tipo, "t") == 0)
+    {
+        token = strtok(NULL, " ");
+        strcpy(f->texto.txto, token);
+        token = strtok(NULL, " ");
+        strcpy(f->texto.familia, token);
+        token = strtok(NULL, " ");
+        strcpy(f->texto.tamanho, token);
+        token = strtok(NULL, " ");
+        strcpy(f->texto.peso, token);
+        token = strtok(NULL, " ");
+        strcpy(f->texto.ancora, token);
+    }
+    else if (strcmp(f->tipo, "b") == 0)
+    {
+        token = strtok(NULL, " ");
+        strcpy(f->texto.txto, token);
+        token = strtok(NULL, " ");
+        strcpy(f->texto.familia, token);
+        token = strtok(NULL, " ");
+        strcpy(f->texto.tamanho, token);
+        token = strtok(NULL, " ");
+        strcpy(f->texto.peso, token);
+        token = strtok(NULL, " ");
+        strcpy(f->texto.ancora, token);
+    }
+    else if (strcmp(f->tipo, "a") == 0)
+    {
+        token = strtok(NULL, " ");
+        strcpy(f->texto.txto, token);
+        token = strtok(NULL, " ");
+        strcpy(f->texto.familia, token);
+        token = strtok(NULL, " ");
+        strcpy(f->texto.tamanho, token);
+        token = strtok(NULL, " ");
+        strcpy(f->texto.peso, token);
+        token = strtok(NULL, " ");
+        strcpy(f->texto.ancora, token);
+    }
+}
