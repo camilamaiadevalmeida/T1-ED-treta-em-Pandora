@@ -140,6 +140,7 @@ Item deslocaXchangeColor(Item item, Clausura c) {
 //continuei [check]
 
 //depende muitinho de foto :)
+//as infos sobre fila do balão..................
 void clonarOQsobrou(Item item, Clausura c)
 {
     struct reverseClos
@@ -163,21 +164,53 @@ void clonarOQsobrou(Item item, Clausura c)
         // percorre as filas do balão atual
         for (int filaAtual = 0; filaAtual < 10; filaAtual++)
         {
-            filaBalao = getBalaoFilaI(balaoAtual, filaAtual);
+            filaBalao = 
             if (isVaziaFila(filaBalao))
+            {
                 continue;
+            }
             elementoInicial = getInicioFila(filaBalao);
             elementoAtual = elementoInicial;
             {
                 elementosFoto = getElementosFoto(elementoAtual);
                 if (elementosFoto != NULL)
                 {
-                    ci.xOffset = getXOffsetFoto(elementoAtual);
-                    ci.yOffset = getYOffsetFoto(elementoAtual);
-                    clonados = map(elementosFoto, deslocaInverte, &ci);
-                    fold(clonados, reportarAtributosFold, cl->txt);
-                    insertPosicLst(db, getFirstLst(clonados), clonados);
+                    clonados = clonarLista(elementosFoto);
+                    clonadosEnderecos = clonarListaEnderecos(elementosFoto);
+                    // percorre a lista de elementos da foto atual
+                    for (int elementoFotoAtual = 0; elementoFotoAtual < getTamanhoLst(elementosFoto); elementoFotoAtual++)
+                    {
+                        // se o elemento da foto atual não está na lista de atingidos
+                        if (!pertenceLst(atingidos, getLst(getPosicLst(clonadosEnderecos, elementoFotoAtual))))
+                        {
+                            // remove o elemento da foto atual
+                            removeLst(elementosFoto, getLst(getPosicLst(clonadosEnderecos, elementoFotoAtual)));
+                            // remove o elemento da lista de clonados
+                            removeLst(clonados, getLst(getPosicLst(clonadosEnderecos, elementoFotoAtual)));
+                            // remove o endereço do elemento da lista de clonadosEnderecos
+                            removeLst(clonadosEnderecos, getPosicLst(clonadosEnderecos, elementoFotoAtual));
+                            elementoFotoAtual--;
+                        }
+                    }
+                    // se a lista de elementos da foto atual não está vazia
+                    if (!isVaziaLst(elementosFoto))
+                    {
+                        // percorre a lista de elementos da foto atual
+                        for (int elementoFotoAtual = 0; elementoFotoAtual < getTamanhoLst(elementosFoto); elementoFotoAtual++)
+                        {
+                            // se o elemento da foto atual está na lista de clonados
+                            if (pertenceLst(clonados, getLst(getPosicLst(clonadosEnderecos, elementoFotoAtual))))
+                            {
+                                // remove o elemento da lista de clonados
+                                removeLst(clonados, getLst(getPosicLst(clonadosEnderecos, elementoFotoAtual)));
+                                // remove o endereço do elemento da lista de clonadosEnderecos
+                                removeLst(clonadosEnderecos, getPosicLst(clonadosEnderecos, elementoFotoAtual));
+                                elementoFotoAtual--;
+                            }
+                        }
+                    }
                 }
+            
                 removeFila(filaBalao);
                 insereFila(filaBalao, elementoInicial);
                 elementoAtual = getInicioFila(filaBalao);

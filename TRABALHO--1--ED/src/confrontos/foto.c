@@ -45,26 +45,26 @@ void reportarFotoTirada(Item item, Clausura c)
     {
     case 'c':
         fprintf(txt, "Círculo %d fotografado!\n\
-X relativo: %lf\n\
-Y relativo: %lf\n",
+        X relativo: %lf\n\
+        Y relativo: %lf\n",
                 get_id(lista),
                 get_x(lista),
                 get_y(lista));
         break;
     case  'r':
         fprintf(txt, "Retângulo %d fotografado!\n\
-X relativo: %lf\n\
-Y relativo: %lf\n",
+        X relativo: %lf\n\
+        Y relativo: %lf\n",
                 get_id(lista),
                 get_x(lista),
                 get_y(lista));
         break;
     case 'l':
         fprintf(txt, "Linha %d fotografada!\n\
-X1 relativo: %lf\n\
-Y1 relativo: %lf\n\
-X2 relativo: %lf\n\
-Y2 relativo: %lf\n",
+        X1 relativo: %lf\n\
+        Y1 relativo: %lf\n\
+        X2 relativo: %lf\n\
+        Y2 relativo: %lf\n",
                 get_id(lista),
                 get_x(lista),
                 get_y(lista),
@@ -73,8 +73,8 @@ Y2 relativo: %lf\n",
         break;
     case 't':
         fprintf(txt, "Texto %d fotografado!\n\
-X relativo: %lf\n\
-Y relativo: %lf\n",
+        X relativo: %lf\n\
+        Y relativo: %lf\n",
                 getTextoId(lista),
                 getTextoX(lista),
                 getTextoY(lista));
@@ -85,7 +85,7 @@ Y relativo: %lf\n",
 
 Foto takePic(Lista lista, FILE *svg, void* formato, FILE *txt, int i)
 {
-    ClausuraRetangulo cRetangulo = criaClausuraRetangulo(getTextoX(balao) - getBalaoR(balao),
+    retClos cRetangulo = criaretClos(getTextoX(balao) - getBalaoR(balao),
                                                          getTextoY(balao) + getBalaoP(balao),
                                                          2 * getBalaoR(balao),
                                                          getBalaoH(balao));

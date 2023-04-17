@@ -24,4 +24,21 @@ double get_YOffsetF(Foto f);
 
 void fotoOff(Foto f);
 
+
+typedef void *retClos;
+
+retClos criaretClos(double x, double y, double w, double h);
+
+void liberaretClos(retClos c);
+
+bool checkInRect(Item item, Clausura c);
+
+typedef void *circClos;
+
+circClos criacircClos(double x, double y, double r);
+
+void liberacircClos(circClos c);
+
+bool checkInCircle(Item item, Clausura c);
+
 #endif
