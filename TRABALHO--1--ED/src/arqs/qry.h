@@ -8,7 +8,7 @@
 
 void dealWithQry(FILE *qry, Lista lst);
 void reportaBaloes(Item item, Clausura c);
-
+void reportaCacas(Item item, Clausura c);
 
 
 
